@@ -1,5 +1,6 @@
 {
   "expo": {
+    "scheme": "finance-tracking-mobile",
     "name": "finance-tracking-mobile",
     "slug": "finance-tracking-mobile",
     "version": "1.0.0",
