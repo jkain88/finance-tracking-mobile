@@ -28,8 +28,7 @@ export default function LoginScreen() {
 
   return (
     <View>
-      <Text>Login Screen</Text>
-      <Button title="Google" onPress={handleLogin} />
+      <Button title="Login with Google" onPress={handleLogin} />
     </View>
   );
 }

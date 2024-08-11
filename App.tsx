@@ -16,7 +16,11 @@ export default function App() {
         <NavigationContainer>
           <Stack.Navigator>
             <Stack.Screen name="Login" component={LoginScreen} />
-            <Stack.Screen name="Home" component={HomeScreen} />
+            <Stack.Screen
+              name="Home"
+              component={HomeScreen}
+              options={{ headerBackTitleVisible: false }}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       </QueryClientProvider>
