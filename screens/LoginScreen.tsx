@@ -4,18 +4,21 @@ import * as Linking from 'expo-linking';
 import * as AuthSession from 'expo-auth-session';
 import * as SecureStore from 'expo-secure-store';
 import Constants from 'expo-constants';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { RootStackParamList } from '../types/Navigation';
 
 WebBrowser.maybeCompleteAuthSession();
 
 export default function LoginScreen() {
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const handleLogin = async () => {
     const redirectUri =
       Constants.appOwnership === 'expo'
         ? AuthSession.makeRedirectUri({ scheme: 'finance-tracking-mobile' })
         : 'finance-tracking-mobile://auth';
     const result = await WebBrowser.openAuthSessionAsync(
-      'http://localhost:8080/api/v1/auth/google',
-      // 'https://finance-tracking-production.up.railway.app/api/v1/auth/google',
+      // 'http://localhost:8080/api/v1/auth/google',
+      'https://finance-tracking-production.up.railway.app/api/v1/auth/google',
       'finance-tracking-mobile://auth'
     );
 
@@ -25,10 +28,8 @@ export default function LoginScreen() {
     if (!token) return;
 
     await SecureStore.setItemAsync('token', token);
+    navigation.navigate('Home');
   };
-
-  const token = SecureStore.getItemAsync('token');
-  console.log('TOKEN', token);
 
   return (
     <View>
